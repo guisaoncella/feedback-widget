@@ -1,3 +1,5 @@
+import { CloseButton } from "./CloseButton";
+
 export function WidgetForm(){
     return (
         <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg 
@@ -5,6 +7,7 @@ export function WidgetForm(){
 
             <header>
                 <span className="text-xl leading-6">Deixe seu feedback</span>
+                <CloseButton/>
             </header>
 
             <p>Formulário do Widget</p>
