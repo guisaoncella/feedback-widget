@@ -1,6 +1,6 @@
 import { ArrowLeft } from "phosphor-react-native";
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import { theme } from "../../theme";
@@ -32,6 +32,13 @@ export function Form({feedbackType}: Props) {
                     </Text>
                 </View>
             </View>
+
+            <TextInput
+                multiline
+                style={styles.input}
+                placeholder="Conte-nos com detalhes o que está acontecendo"
+                placeholderTextColor={theme.colors.text_secondary}
+            />
         </View>
     );
 }
