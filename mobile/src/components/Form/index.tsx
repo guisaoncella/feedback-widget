@@ -1,7 +1,6 @@
 import { ArrowLeft } from "phosphor-react-native";
 import React from "react";
-import { View, Text, Image, TextInput } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
 
 import { theme } from "../../theme";
 import { feedbackTypes } from "../../utils/feedbackTypes";
