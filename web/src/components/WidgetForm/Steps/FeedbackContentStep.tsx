@@ -4,6 +4,7 @@ import { FeedbackType, feedbackTypes } from "..";
 import { CloseButton } from "../../CloseButton";
 import { ScreenshotButton } from "../ScreenshotButton";
 import { api } from "../../../libs/api";
+import { Loading } from "../../Loading";
 
 interface FeedbackContentStepProps {
     feedbackType: FeedbackType;
@@ -16,9 +17,11 @@ export function FeedbackContentStep({feedbackType, onRestartFeedback, onFeedback
     
     const [screenshot, setScreenshot] = useState<string | null>(null);
     const [comment, setComment] = useState("");
+    const [isSendingFeedback, setIsSendingFeedback] = useState(false);
 
     async function handleSubmitFeedback(event: FormEvent) {
         event.preventDefault();
+        setIsSendingFeedback(true);
         
         await api.post("/feedbacks",{
             type: feedbackType,
@@ -26,7 +29,7 @@ export function FeedbackContentStep({feedbackType, onRestartFeedback, onFeedback
             screenshot,
         });
 
-        console.log(screenshot);
+        setIsSendingFeedback(false);
         onFeedbackSent();
     }
 
@@ -67,7 +70,7 @@ export function FeedbackContentStep({feedbackType, onRestartFeedback, onFeedback
 
                     <button
                         type="submit"
-                        disabled={!comment}
+                        disabled={!comment || isSendingFeedback}
                         className="p-2 bg-brand-500 rounded-md border-transparent flex-1 flex justify-center items-center text-sm 
                             hover:bg-brand-300 hover:ring-2 hover:ring-brand-500 hover:ring-offset-2 hover:ring-offset-zinc-900
                             focus:outline-none focus:ring-2 focus:ring-brand-500 
@@ -75,7 +78,7 @@ export function FeedbackContentStep({feedbackType, onRestartFeedback, onFeedback
                             disabled:opacity-50 disabled:hover:bg-brand-500 transition-all"
                     >
 
-                    Enviar Feedback        
+                        {isSendingFeedback ? <Loading/> : "Enviar Feedback" }        
                     </button>
                 </footer>
             </form>
