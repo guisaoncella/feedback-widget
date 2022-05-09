@@ -1,5 +1,11 @@
+import { PageHeader } from "./components/Page/PageHeader";
 import { Widget } from "./components/Widget";
 
 export function App() {
-    return <Widget/>;
+    return(
+        <>
+            <PageHeader/>
+            <Widget/>
+        </>
+    );    
 }
